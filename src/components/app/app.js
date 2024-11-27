@@ -68,11 +68,18 @@ class App extends Component{
             })
         }))
     }
-
+    getTotalPrem = () => {
+        const total = this.state.data.reduce((total, cur) => {
+            return cur.rise ? total + 1 : total;
+        }, 0);
+        return total;
+    };
+   
     render() {
+        const totalEmpl = this.state.data.length
         return(
             <div className="app">
-                <AppInfo />
+                <AppInfo totalEmpl = {totalEmpl} totalPrem = {this.getTotalPrem()}/>
                 <div className="search-panel">
                     <SearchPanel />
                     <AppFilter />
